@@ -16,8 +16,8 @@ int main() {
 		sort(a,a+n);
 		long long kq = 0;
 		for(int i = 0; i < n; i++) {
-			int x = lower_bound(a+i+1, a+n, a[i]+k) - a;
-			kq += x - i - 1;
+			int x = lower_bound(a+i+1, a+n, a[i]+k) - a;       // x cho giá trị về vị trí >= a[i]+k đầu tiên
+			kq += x - i - 1;                                   // add thêm giá trị cho biến đếm 
 		}
 		cout << kq << endl;
 	}
