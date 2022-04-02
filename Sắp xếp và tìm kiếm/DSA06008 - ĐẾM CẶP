@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+#define endl '\n'
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	int t;
+	cin >> t; 
+	while(t--) {                                                          // sắp xếp 2 mảng r đếm
+		int n, m;
+		cin >> n >> m;
+		int a[n], b[m];
+		for(int i = 0; i < n; i++) cin >> a[i];
+		for(int i = 0; i < m; i++) cin >> b[i];
+		sort(a, a+n);  sort(b, b+m);
+		int dem = 0;
+		int i = 0, j = 0;
+		while(a[i] < 5) i++;
+		while(b[j] < 5) j++;
+		for(int k = 0; k < i; k++) {                                        // duyệt trâu với các số giá trị từ 0 đến 5
+			for(int p = 0; p < j; p++) {
+				if (pow(a[k], b[p]) > pow(b[p], a[k])) 
+					dem++;
+			}
+		}
+		for(int k = 0; k < i; k++) {                                        // trường hợp đặc biệt x = 0 luôn sai
+			if (a[k] > 1) dem += m-j;
+		}
+		for(int p = 0; p < j; p++) {                                        // y = 1 or 0 luôn đúng
+			if (b[p] < 2) dem += n-i;
+		}
+	//	cout << i << j << endl;
+		while (i < n) {                                                     // truong hợp tổng quát x^y > y^x <=> x > y
+			
+				int x = upper_bound(b+j, b+m, a[i]) - b;
+				dem += (m-x);
+			
+			i++;
+		}
+		cout << dem << endl;
+	}
+}
