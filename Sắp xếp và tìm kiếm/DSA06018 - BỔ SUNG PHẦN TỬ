@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+#define endl '\n'
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	int t;
+	cin >> t;
+	while(t--) {
+		int n;
+		cin >> n;
+		long check[100000]; 
+		for(long i = 0; i < 100000; i++) check[i] = 0;
+		long a[n];
+		for(long i = 0; i < n; i++) {
+			cin >> a[i];
+			check[a[i]]++;
+		}
+		sort(a, a+n);
+		int dem = 0;
+		for(long i = a[0]; i <= a[n-1]; i++) {
+			if(check[i] == 0) dem++;
+		}
+		cout << dem << endl;
+	}
+	
+}
+
